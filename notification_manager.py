@@ -1,3 +1,23 @@
+import smtplib
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+MY_EMAIL = os.environ.get("FROM_ADDR")
+PASSWORD = os.environ.get("PASSWORD")
+TO_ADDRS = os.environ.get("TO_ADDRS")
+
+
 class NotificationManager:
-    #This class is responsible for sending notifications with the deal flight details.
-    pass
+    def send_notification(self):
+        connection = smtplib.SMTP("smtp.gmail.com", port=587)
+        connection.starttls()
+        connection.login(user=MY_EMAIL, password=PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs=TO_ADDRS,
+            msg=f"Subject:ISS Satellite\n\nGuck mal im Himmel! eine Satellite!"
+        )
+        connection.close()
+
