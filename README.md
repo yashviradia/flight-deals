@@ -43,6 +43,7 @@ Give the notification per E-Mail.
 
 ### Continued Development
 - Using Twilio API to send SMS Notification about cheapest Flight available.
+- Changing EUR to €, currently Program is getting UnicodeError, but it will be updated.
 
 ### Useful resources
 - Stack Overflow - [Stack Overflow](https://stackoverflow.com/)
