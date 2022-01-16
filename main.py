@@ -1,23 +1,15 @@
 from data_manager import DataManager
 from datetime import datetime, timedelta
 from flight_search import FlightSearch
+from notification_manager import NotificationManager
 
-# this should be in new file
-import smtplib
-import os
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
 
 data_manager = DataManager()
 sheet_data = data_manager.get_destination_data()
 flight_search = FlightSearch()
+notification_manager = NotificationManager()
 
 ORIGIN_CITY_IATA = "LON"
-
-MY_EMAIL = os.environ.get("FROM_ADDR")
-PASSWORD = os.environ.get("PASSWORD")
-TO_ADDRS = os.environ.get("TO_ADDRS")
 
 
 if sheet_data[0]["iataCode"] == "":
@@ -38,3 +30,9 @@ for destination in sheet_data:
         to_time=six_month_from_today
     )
 
+    if flight.price < destination["lowestPrice"]:
+        notification_manager.send_notification(
+            message=f"Subject:Low price alert! \n\nOnly {flight.price}EUR to fly from"
+                f" {flight.origin_city}-{flight.origin_airport} to {flight.destination_city}-"
+                f"{flight.destination_airport}, from {flight.out_date} to {flight.return_date}."
+        )
