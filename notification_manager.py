@@ -10,14 +10,15 @@ TO_ADDRS = os.environ.get("TO_ADDRS")
 
 
 class NotificationManager:
-    def send_notification(self):
+
+    def send_notification(self, message):
         connection = smtplib.SMTP("smtp.gmail.com", port=587)
         connection.starttls()
         connection.login(user=MY_EMAIL, password=PASSWORD)
         connection.sendmail(
             from_addr=MY_EMAIL,
             to_addrs=TO_ADDRS,
-            msg=f"Subject:ISS Satellite\n\nGuck mal im Himmel! eine Satellite!"
+            msg=message
         )
         connection.close()
 
