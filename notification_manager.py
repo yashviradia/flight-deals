@@ -23,5 +23,5 @@ class NotificationManager:
                 to_addrs=email,
                 msg=f"Subject:New Low Price Flight!\n\n{message}\n{google_flight_link}".encode("utf-8")
             )
-            connection.close()
+        connection.close()
 
