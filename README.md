@@ -18,7 +18,7 @@ Give the notification per E-Mail.
 ## Overview
 
 ### Screenshot
-![Image coming soon](./images/Automated_Birthday_Wisher_image.png?raw=true "Wishing Birthday to myself!")
+![E-Mail_Notification.png](images/email_notification.png)
 
 ### Links
 - Github Repository: [Flight Deals](https://github.com/yashviradia/flight-deals)
